@@ -1,0 +1,12 @@
+{
+  "name": "learning-apollo-backend",
+  "version": "1.0.0",
+  "description": "graphQl backend",
+  "main": "index.js",
+  "repository": "https://github.com/ssb00134/learning-apollo-backend",
+  "author": "jun <ssb00134@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3"
+  }
+}
