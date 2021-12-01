@@ -1,40 +1,22 @@
-export let movies = [
-    {
-     id : 1,
-      name: "titanic",
-      score : 100
+import axios from "axios";
 
-    },
-    {
-     id : 2,
-      name: "metrix",
-      score : 100
+const API_URL = "http://yts.am/api/v2/list_movies.json?"
 
-    }
-  ];
 
-export const getById = id =>{
-  const filteredPeople = movies.filter(movie=> movie.id === id);
-  return filteredPeople[0];
-}
 
-export const getMovies = ()=> movies;
-
-export const deleteMovie = (id) =>{
-  const clearMoviles = movies.filter(movie => movie.id !== id);
-  if(movies.length > clearMoviles.length){
-    movies = clearMoviles;
-    return true;
+export const getMovies = (limit,rating)=> {
+  let REQUEST_URL = API_URL;
+  if(limit>0){
+    REQUEST_URL += `limit=${limit}`;
   }
-  return false;
-}
+  if(rating>0){
+    REQUEST_URL += `&minimum_rating=${rating}`;
+  }
 
-export const addMovie = (name,score)=>{
-  const newMovie = {
-    id : `${getMovies().length + 1}`,
-    name ,
-    score
-  };
-  movies.push(newMovie);
-  return newMovie;
-}
+  console.log(REQUEST_URL)
+  return axios.get(`${REQUEST_URL}`)
+  .then(res=>res.data.data.movies)
+  .catch((Error)=>{
+    console.log(Error);
+  })
+};
